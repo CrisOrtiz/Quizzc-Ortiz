@@ -32,7 +32,47 @@ public class QuestionInputHandler {
 			String value = InputReader.readLine();
 			answers.add(value);
 			
-			
+			List<String> errors = new ArrayList<>();
+            MinLengthValidator minLengthValidator = new MinLengthValidator();
+            MaxLengthValidator maxLengthValidator = new MaxLengthValidator();
+            RequiredValidator rv = new RequiredValidator();
+            DateValidator dateValidator = new DateValidator();
+            MinValidator minValidator = new MinValidator();
+            MaxValidator maxValidator = new MaxValidator();
+            UpperCaseValidator upperCaseValidator = new UpperCaseValidator();
+            
+            for (int i = 0; i < question.getValidations().size(); i++) {
+                switch (question.getValidations().get(i)) {
+                    case REQUIRED:
+                        rv.validate(value, "", errors);
+                        System.out.println(errors);
+                        break;
+                    case DATE:
+                        dateValidator.validate(value, null, errors);
+                        System.out.println(errors);
+                        break;
+                    case MIN:
+                        minValidator.validate(value, "10", errors);
+                        System.out.println(errors);
+                        break;
+                    case MAX:
+                        maxValidator.validate(value, "10", errors);
+                        System.out.println(errors);
+                        break;
+                    case MIN_LENGTH:
+                        minLengthValidator.validate(value, "2", errors);
+                        System.out.println(errors);
+                        break;
+                    case MAX_LENGTH:
+                        maxLengthValidator.validate(value, "2", errors);
+                        System.out.println(errors);
+                        break;
+                    case UPPERCASE:
+                        upperCaseValidator.validate(value, "2", errors);
+                        System.out.println(errors);
+                        break;
+                }
+            }	
 		}
 
 		return answers;

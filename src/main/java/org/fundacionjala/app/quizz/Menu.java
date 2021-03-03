@@ -71,7 +71,7 @@ public class Menu {
         System.out.println("2. import from json");
         System.out.println("3. Fill quiz");
         System.out.println("3. Show quiz");
-        System.out.println("4. Exit");
+        System.out.println("5. Exit");
         System.out.println("======================================");
     }
 }
